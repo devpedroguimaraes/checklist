@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Checklist SMART - Áreas de Emergência - DTI Hospital Rio Grande">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/RIO GRANDE HOR5.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Checklist SMART | Hospital Rio Grande</title>
+</head>
+<body>
+  <header class="topbar">
+    <img src="assets/RIO GRANDE HOR5.png" class="logo" alt="Hospital Rio Grande - DTI">
+    <div class="topbar-title">
+      <strong>CHECKLIST SMART</strong>
+      <span>ÁREAS DE EMERGÊNCIA</span>
+    </div>
+  </header>
+
+  <main class="app">
+    <section id="home" class="screen active">
+      <div class="hero">
+        <img src="assets/RIO GRANDE HOR5.png" class="hero-logo" alt="Hospital Rio Grande">
+        <p class="eyebrow">DTI · TECNOLOGIA DA INFORMAÇÃO</p>
+        <h1>Checklist SMART</h1>
+        <p class="muted">CLT.QUA.005 · ANEXO 1</p>
+      </div>
+      <div class="action-grid">
+        <button class="btn btn-primary btn-large" onclick="showScreen('form')">＋ NOVO CHECKLIST</button>
+        <button class="btn btn-secondary btn-large" onclick="renderHistory(); showScreen('history')">▣ HISTÓRICO</button>
+      </div>
+      <div class="info-card">
+        <span>✓</span>
+        <div>
+          <strong>Pronto para uso</strong>
+          <p>Funciona no celular e tablet. Os dados do checklist ficam salvos localmente neste dispositivo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="form" class="screen">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">NOVO REGISTRO</span>
+          <h2>Identificação</h2>
+        </div>
+        <button class="icon-btn" onclick="confirmHome()" aria-label="Voltar">×</button>
+      </div>
+
+      <form id="checklistForm">
+        <div class="card">
+          <label>Responsável
+            <input id="nome" required autocomplete="name" placeholder="Nome completo">
+          </label>
+          <label>Mat. do responsável
+            <input id="matricula" required inputmode="numeric" placeholder="Matrícula">
+          </label>
+          <label>Data
+            <input id="data" required type="date">
+          </label>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Itens do checklist</span><strong id="progressText">0 / 15</strong></div>
+          <div class="progress"><div id="progressBar"></div></div>
+        </div>
+
+        <div id="items"></div>
+
+        <div class="card signature-card">
+          <label>Assinatura / identificação final
+            <input id="assinatura" placeholder="Nome do responsável">
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large sticky-submit">✓ FINALIZAR E GERAR PDF</button>
+      </form>
+    </section>
+
+    <section id="history" class="screen">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">REGISTROS</span>
+          <h2>Histórico</h2>
+        </div>
+        <button class="icon-btn" onclick="showScreen('home')" aria-label="Voltar">×</button>
+      </div>
+      <div id="historyList"></div>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="result-card">
+        <div class="success-icon">✓</div>
+        <span class="eyebrow">CHECKLIST FINALIZADO</span>
+        <h2>PDF gerado com sucesso</h2>
+        <p class="muted">O arquivo está pronto para visualização, compartilhamento e envio ao Google Drive.</p>
+        <div id="driveStatus" class="drive-status neutral">Preparando envio para o Google Drive...</div>
+        <div class="result-actions">
+          <button class="btn btn-primary btn-large" id="viewPdf">▣ VISUALIZAR PDF</button>
+          <button class="btn btn-secondary btn-large" id="sharePdf">↗ COMPARTILHAR PDF</button>
+          <button class="btn btn-ghost btn-large" id="downloadPdf">↓ BAIXAR PDF</button>
+          <button class="btn btn-ghost btn-large" onclick="resetChecklist()">＋ NOVO CHECKLIST</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Hospital Rio Grande · DTI · Tecnologia da Informação</footer>
+
+  <!-- jsPDF: para uma versão 100% offline, coloque a biblioteca localmente em vendor/jspdf.umd.min.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

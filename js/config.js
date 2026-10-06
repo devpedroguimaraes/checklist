@@ -1,0 +1,1 @@
+const GOOGLE_DRIVE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwe0QtF4bpZNBKnS-8b70wwOU-CFTG2dk6E8T5QhSdko_hHoHmc6Fi_qz0xqbY6GHzy4A/exec";
